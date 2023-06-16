@@ -1,6 +1,6 @@
-# Nuxt 3 Minimal Starter
+# Тестовое задание (Nuxt3/Vue3 + Pinia + Typescript)
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+[Условия задания](https://docs.google.com/document/d/1MrQFW4rtieWM5oyHKZNNIu48rZ38Xo-FpeOw_H7So7E/edit).
 
 ## Setup
 

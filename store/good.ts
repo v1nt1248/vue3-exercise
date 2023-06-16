@@ -12,11 +12,14 @@ interface NameResItem {
 
 export const useGoodStore = defineStore('good', () => {
   const currencyStore = useCurrencyStore()
-
+  /* список групп товаров */
   const goodGroups = ref<Record<string, string>>({})
+  /* список всех товаров */
   const goods = ref<Record<string, Good>>({})
+  /* данные о запасах товаров с ценами в USD */
   const stock = ref<Stock[]>([])
 
+  /* список товаров с запасами и с ценами в выбранной валюте (getter) */
   const goodList = computed<GoodList>(() => Object.keys(goodGroups.value)
     .reduce((res, grId) => {
       res[grId] = {
@@ -34,6 +37,7 @@ export const useGoodStore = defineStore('good', () => {
       return res
     }, {} as GoodList))
 
+  /* получение списка групп товаров (action) */
   const fetchGoodGroups = () => {
     goodGroups.value = Object.entries(namesRes).reduce((res, v) => {
       const [ id, value ] = v
@@ -42,6 +46,7 @@ export const useGoodStore = defineStore('good', () => {
     }, {} as Record<string, string>)
   }
 
+  /* получение списка товаров (action) */
   const fetchGoods = () => {
     goods.value = Object.entries(namesRes).reduce((res, v) => {
       const [ grId, value ] = v as [string, NameResItem]
@@ -57,6 +62,7 @@ export const useGoodStore = defineStore('good', () => {
     }, {} as Record<string, Good> )
   }
 
+  /* получение запаса товаров (action) */
   const fetchStock = () => {
     const { Goods } = dataRes?.Value
     stock.value = Goods.map(item => ({

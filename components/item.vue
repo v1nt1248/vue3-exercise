@@ -76,10 +76,12 @@
     align-items: center;
     padding: 0 var(--base-size);
     border-bottom: 1px solid var(--black-30);
+    font-size: 12px;
 
     &__name {
       width: calc(100% - 280px);
       position: relative;
+      padding-right: calc(var(--base-size) / 2);
     }
 
     &__input {
@@ -91,7 +93,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 12px;
       font-weight: 400;
     }
 
@@ -100,7 +101,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 12px;
       font-weight: 400;
     }
 

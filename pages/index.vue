@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-  import { onBeforeMount } from 'vue'
+  import { onBeforeMount, onBeforeUnmount, ref } from 'vue'
   import { useCurrencyStore } from '@/store/currency'
   import { useGoodStore } from '@/store/good'
+  import { REQUEST_INTERVAL } from '@/utils/constants'
   import GoodGroup from '@/components/good-group.vue'
   import Cart from '@/components/cart.vue'
   import CurrencySelect from '@/components/currency-select.vue'
@@ -9,11 +10,31 @@
   const currencyStore = useCurrencyStore()
   const goodStore = useGoodStore()
 
+  const count = ref(0)
+  const timerId = ref()
+
+  await useAsyncData(
+    'currencies',
+    () => {
+      currencyStore.fetchCurrencyRates()
+
+      timerId.value = setTimeout(() => {
+        count.value += 1
+      }, REQUEST_INTERVAL)
+      return
+    },
+    { watch: [count] },
+  )
+
   onBeforeMount(async() => {
-    await currencyStore.fetchCurrencyRates()
     goodStore.fetchGoodGroups()
     goodStore.fetchGoods()
     goodStore.fetchStock()
+  })
+
+  onBeforeUnmount(() => {
+    clearTimeout(timerId.value)
+    timerId.value = null
   })
 </script>
 

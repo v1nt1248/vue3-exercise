@@ -1,5 +1,9 @@
 <script lang="ts" setup>
-  import { computed, nextTick, ref, watch } from 'vue'
+/**
+ * компонент "ожидает" ввода сиволов для поиска подходящих валют
+ * валюту из списка можно выбирать мышкой или с клавиатуры (стрелки вверх/вниз и клавига "Enter")
+ */
+import { computed, nextTick, ref, watch } from 'vue'
   import { onClickOutside } from '@vueuse/core'
   import { useCurrencyStore } from '@/store/currency'
 

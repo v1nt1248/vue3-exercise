@@ -23,6 +23,7 @@
     </div>
     <good
       v-for="good in props.group.goods"
+      :key="good.id"
       :good="good"
       @select="onSelect"
     />

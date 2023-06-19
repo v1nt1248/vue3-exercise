@@ -3,9 +3,6 @@
   import { useCurrencyStore } from '@/store/currency'
   import { useGoodStore } from '@/store/good'
   import { REQUEST_INTERVAL } from '@/utils/constants'
-  import GoodGroup from '@/components/good-group.vue'
-  import Cart from '@/components/cart.vue'
-  import CurrencySelect from '@/components/currency-select.vue'
 
   const currencyStore = useCurrencyStore()
   const goodStore = useGoodStore()
@@ -15,13 +12,12 @@
 
   await useAsyncData(
     'currencies',
-    () => {
-      currencyStore.fetchCurrencyRates()
+    async () => {
+      await currencyStore.fetchCurrencyRates()
 
       timerId.value = setTimeout(() => {
         count.value += 1
       }, REQUEST_INTERVAL)
-      return
     },
     { watch: [count] },
   )

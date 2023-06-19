@@ -3,7 +3,7 @@
  * компонент "ожидает" ввода сиволов для поиска подходящих валют
  * валюту из списка можно выбирать мышкой или с клавиатуры (стрелки вверх/вниз и клавига "Enter")
  */
-import { computed, nextTick, ref, watch } from 'vue'
+  import { computed, nextTick, ref, watch } from 'vue'
   import { onClickOutside } from '@vueuse/core'
   import { useCurrencyStore } from '@/store/currency'
 
@@ -58,7 +58,7 @@ import { computed, nextTick, ref, watch } from 'vue'
     })
   }
 
-  const selectCurrency = currency => {
+  const selectCurrency = (currency: string) => {
     currencyStore.setCurrentCurrency(currency)
     isFocused.value = false
   }
@@ -68,7 +68,7 @@ import { computed, nextTick, ref, watch } from 'vue'
     el && el.scrollIntoView({ block: "nearest" })
   }
 
-  const onKeydown = ev => {
+  const onKeydown = (ev: KeyboardEvent) => {
     const { key } = ev
     switch (key) {
       case 'ArrowDown':
